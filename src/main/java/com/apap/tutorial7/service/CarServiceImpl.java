@@ -1,6 +1,7 @@
 package com.apap.tutorial7.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +20,13 @@ public class CarServiceImpl implements CarService {
 	private CarDb carDb;
 	
 	@Override
-	public void addCar(CarModel car) {
-		carDb.save(car);
+	public CarModel addCar(CarModel car) {
+		return carDb.save(car);
 	}
 	
 	@Override
-	public void deleteCar(Long idCar) {
-		carDb.delete(carDb.findById(idCar).get());
+	public void deleteCar(CarModel car) {
+		carDb.delete(car);
 	}
 	
 	@Override
@@ -47,5 +48,15 @@ public class CarServiceImpl implements CarService {
 	public List<CarModel> getListCardOrderByPriveAsc(Long dealerId) {
 		return carDb.findByDealerIdOrderByPriceAsc(dealerId);
 	}
+	
+    @Override
+    public List<CarModel> getAllCar() {
+        return carDb.findAll();
+    }
+    
+    @Override
+    public Optional<CarModel> getCarDetailById(Long id) {
+        return carDb.findById(id);
+    }
 
 }
