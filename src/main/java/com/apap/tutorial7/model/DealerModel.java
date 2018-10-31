@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * DealerModel
  */
@@ -26,7 +28,8 @@ public class DealerModel implements Serializable {
 	@Column(name = "no_telp", nullable = false)
 	private String noTelp;
 	
-	@OneToMany(mappedBy = "dealer", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "dealer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<CarModel> listCar;
 
 	public long getId() {

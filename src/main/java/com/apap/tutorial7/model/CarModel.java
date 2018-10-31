@@ -41,6 +41,7 @@ public class CarModel implements Serializable {
 	@JoinColumn(name = "dealer_id", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
+	//@JsonIgnoreProperties("listCar")
 	private DealerModel dealer;
 
 	public DealerModel getDealer() {
