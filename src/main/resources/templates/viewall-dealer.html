@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<style>
+	table {
+	    border-collapse: collapse;
+	    width: 70%;
+	}
+	
+	th, td {
+	    text-align: left;
+	    padding: 8px;
+	}
+	
+	tr:nth-child(even){background-color: #f2f2f2}
+	
+	th {
+	    background-color: #4CAF50;
+	    color: white;
+	}
+</style>
+
+
+<head>
+	<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<h2>Daftar Dealer</h2>
+
+	<table>
+	  <tr>
+	    <th>Id</th>
+	    <th>Alamat</th>
+	    <th>No. Telp</th>
+	    <th>Detail</th>
+	    <th>Delete</th>
+	    <th>Update</th>
+	  </tr>
+	  <tr th:each="d : ${dealerlist}">
+	    <td th:text="${d.id}">notelp</td>
+	    <td th:text="${d.alamat}">alamat</td>
+	    <td th:text="${d.noTelp}">id</td>
+	    <td> <a th:href="@{/dealer/view(dealerId=${d.id})}">view</a> </td>
+	    <td> <a th:href="@{/dealer/delete/} + ${d.id}">delete</a> </td>
+	    <td> <a th:href="@{/dealer/update/} + ${d.id}">Update </a> </td>
+	  </tr>
+	</table>
+</body>
+</html>
